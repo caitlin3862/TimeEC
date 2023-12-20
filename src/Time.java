@@ -46,47 +46,24 @@ public class Time {
         }
     }
 
-    public void add(String time){
-        int timeHours = Integer.parseInt(time.substring(0,2));
-        int timeMins = Integer.parseInt(time.substring(3,5));
-        int timeSecs = Integer.parseInt(time.substring(6));
-        if ((seconds + timeSecs) > 59){
-            seconds -= (seconds - timeHours);
-            minutes++;
-        } else {
-            seconds += timeSecs;
-        }
-        if ((minutes + timeMins) > 59){
-            minutes -= (minutes - timeMins);
-            hours ++;
-        } else {
-            minutes += timeMins;
-        }
-        if ((hours + timeHours) > 23){
-            hours -= (hours - timeHours);
-        } else {
-            hours += timeHours;
-        }
-    }
-
     public void add(Time time1){
         int timeHours = Integer.parseInt(time1.info().substring(0,2));
         int timeMins = Integer.parseInt(time1.info().substring(3,5));
         int timeSecs = Integer.parseInt(time1.info().substring(6));
         if ((seconds + timeSecs) > 59){
-            seconds -= (seconds - timeHours);
+            seconds = (seconds + timeSecs) - 60;
             minutes++;
         } else {
             seconds += timeSecs;
         }
         if ((minutes + timeMins) > 59){
-            minutes -= (minutes - timeMins);
+            minutes = (minutes + timeMins) - 60;
             hours ++;
         } else {
             minutes += timeMins;
         }
         if ((hours + timeHours) > 23){
-            hours -= (hours - timeHours);
+            hours = (hours + timeHours) - 24;
         } else {
             hours += timeHours;
         }
